@@ -26,6 +26,7 @@ $this->load->view("shopping_view" ,$data);
                 'price'=>$this->input->post('price'),
                 'qty'=>1);
 $this->cart->insert($insert_data);
+
 $this->load->view("cart_page");
   }
 
