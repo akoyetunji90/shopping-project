@@ -80,6 +80,20 @@ $customer = array(
 //save info to table in db
 $cust_id = $this->Shopping_Model->insert_customer($customer);
 
+$this->load->view('paymentDetails');
+}
+
+public function place_order()
+{
+$customer = array(
+'fullname' => $this->input->post('fullname'),
+'bank' => $this->input->post('bank'),
+'payment_mode' => $this->input->post('payment_mode'),
+'card_number' => $this->input->post('card_number'),
+);
+//save info to table in db
+$cust_id = $this->Shopping_Model->insert_customer1($customer);
+
 $order = array(
 'date' => date('Y-m-d'),
 'customer_id' => $cust_id
@@ -100,7 +114,17 @@ $cust_id = $this->Shopping_Model->insert_order_detail($order_detail);
 endforeach;
 endif;
 
-$this->load->view('billing_success');
+$this->load->view('paymentDetails');
 }
+
+function billing_success(){
+        $this->load->view('billing_success');
+}
+
+function checkOut_page(){
+        $this->load->view('checkOut_page');
+}
+
+
 }
 ?>

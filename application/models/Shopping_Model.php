@@ -9,11 +9,17 @@ class Shopping_Model extends CI_Model {
      return $query->result();
     }
 
-
-// Insert customer details in "customer" table in database.
+// Insert customer details in "customers" table in database.
 public function insert_customer($data)
 {
 $this->db->insert('customers', $data);
+$id = $this->db->insert_id();
+return (isset($id)) ? $id : FALSE;
+}
+
+public function insert_customer1($data)
+{
+$this->db->insert('billing', $data);
 $id = $this->db->insert_id();
 return (isset($id)) ? $id : FALSE;
 }
