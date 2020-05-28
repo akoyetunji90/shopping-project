@@ -8,6 +8,10 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/CSS/style.css">
 
+<!-- Font Awesome CDN-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.css" integrity="sha256-2SjB4U+w1reKQrhbbJOiQFARkAXA5CGoyk559PJeG58=" crossorigin="anonymous" />
+
+
 </head>
 
 <script type="text/javascript">
@@ -36,22 +40,23 @@ return false; // cancel button
 if ($cart = $this->cart->contents()): ?>
 
 <tr id= "main_heading">
+<td>Product Image</td>
 <td>Serial</td>
 <td>Name</td>
-<td>Price</td>
+<td>Unit Price</td>
 <td>Qty</td>
 <td>Amount</td>
 <td>Cancel Products</td>
 </tr>
 
 <?php
-// Create form and send all values in "shopping/update_cart" function.
 echo form_open('Shopping_Cart/update_cart');
 $grand_total = 0;
 $i = 1;
 
 foreach ($cart as $item):
-echo form_hidden('cart[' . $item['id'] . '][id]', $item['id']);
+//echo form_hidden('cart[' . $item['id'] . '][id]', $item['id']);
+echo form_hidden('cart[' . $item['id'] . '][image]', $item['image']);
 echo form_hidden('cart[' . $item['id'] . '][rowid]', $item['rowid']);
 echo form_hidden('cart[' . $item['id'] . '][name]', $item['name']);
 echo form_hidden('cart[' . $item['id'] . '][price]', $item['price']);
@@ -59,30 +64,38 @@ echo form_hidden('cart[' . $item['id'] . '][qty]', $item['qty']);
 ?>
 
 <tr>
+
+<td>
+<img src='<?php echo $item["image"]; ?>' />
+</td>
+
 <td>
 <?php echo $i++; ?>
 </td>
+
 <td>
 <?php echo $item['name']; ?>
 </td>
+
 <td>
 # <?php echo number_format($item['price'], 2); ?>
 </td>
+
 <td>
 <?php echo form_input('cart[' . $item['id'] . '][qty]', $item['qty'], 'maxlength="3" size="1" style="text-align: right"'); ?>
 </td>
+
 <?php $grand_total = $grand_total + $item['subtotal']; ?>
 <td>
 # <?php echo number_format($item['subtotal'], 2) ?>
 </td>
-<td>
 
+<td>
 <?php
 // cancle image.
 $path = "<img src='http://localhost/codeigniter_cart/images/cart_cross.jpg' width='25px' height='20px'>";
 echo anchor('Shopping_Cart/remove_cart/' . $item['rowid'], $path);
 ?>
-
 </td>
 
 <?php endforeach; ?>
@@ -95,7 +108,7 @@ echo number_format($grand_total, 2); ?></b>
 </td>
 
 <?php // "clear cart" button call javascript confirmation message ?>
-<td colspan="5" align="right"><input  class ='fg-button teal' type="button" value="Clear Cart" onclick="clear_cart()">
+<td colspan="7" align="right"><input  class ='fg-button teal' type="button" value="Clear Cart" onclick="clear_cart()">
 
 <?php //submit button. ?>
 <input class ='fg-button teal'  type="submit" value="Update Cart">
@@ -103,6 +116,7 @@ echo number_format($grand_total, 2); ?></b>
 
 <!-- "Place order button" on click send "billing" controller -->
 <input class ='fg-button teal' type="button" value="Place Order" onclick="window.location = 'billing_view'">
+
 </td>
 </tr>
 

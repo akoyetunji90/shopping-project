@@ -2,18 +2,20 @@
 <head>
 <title>Codeigniter cart class</title>
 <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700' rel='stylesheet' type='text/css'>
+
+<!-- Font Awesome CDN-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.css" integrity="sha256-2SjB4U+w1reKQrhbbJOiQFARkAXA5CGoyk559PJeG58=" crossorigin="anonymous" />
+
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/CSS/style.css">
 
 </head>
 
 <body>
 
-
 <div id='content'>
 
 <div id="text">
 <?php $cart_check = $this->cart->contents();
-// If cart is empty, this will show below message.
 if(empty($cart_check)) {
 echo 'To add products to your shopping cart click on "Add to Cart" Button';
 } ?>
@@ -25,7 +27,6 @@ echo 'To add products to your shopping cart click on "Add to Cart" Button';
 
 
 <?php
-
 // "$products" send from "shopping" controller,its stores all product which available in database.
 foreach ($products as $product) {
 $id = $product->id;
@@ -37,10 +38,11 @@ $images = $product->images;
 echo "<div id='product_div'>";
 
 echo "<div id='info_product'>
-<div id='image_div'><img src='".base_url().$images." '/ ></div>
+<div id='image_div'><img src='".base_url().$images." '/ width=200 height=200></div>
 <div id='name'>".$name."</div>
 <div id='desc'>".$description."</div>
 <div id='rs'><b>Price</b>:<big>".$price."</big></div>";
+
 // Create form and send values in 'Shopping_Cart/add' function.
 echo form_open('Shopping_Cart/add_cart');
 echo form_hidden('id', $id);
@@ -61,6 +63,7 @@ echo form_close();
 echo "</div></div>";
  } 
  ?>
+ 
 </div>
 </div>
 </body>
