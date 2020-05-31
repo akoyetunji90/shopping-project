@@ -10,11 +10,36 @@
 
 <!-- Font Awesome CDN-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.css" integrity="sha256-2SjB4U+w1reKQrhbbJOiQFARkAXA5CGoyk559PJeG58=" crossorigin="anonymous" />
-
 </head>
 
-<?php include('header.php')
+<header id = "header"> 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class style="float:right">
+<a href="index" class="navbar-brand">
+<h3 class = "px-5">Continue Shopping <i class = "fas fa-shopping-basket"></i>
+</h3>
+</a>
+</div>
+</nav>
+
+<div class= "navbar-nav">
+<a href="cart.php" class="nav-item nav-link active">
+<h5 calss = "px-5 cart">
+<i class= "fas fa-shopping-cart"></i>Cart
+
+<?php
+if ($cart = $this->cart->contents()){
+    $count = count($cart);
+    echo $count;
+}else {
+    echo "cart is empty";
+}
 ?>
+
+</h5>
+</a>
+</div>
+</header>
 
 <script type="text/javascript">
 // To conform clear all data in cart.
@@ -114,7 +139,7 @@ echo number_format($grand_total, 2); ?></b>
 <td colspan="7" align="right"><input  class ='fg-button teal' type="button" value="Clear Cart" onclick="clear_cart()">
 
 <?php //submit button. ?>
-<input class ='fg-button teal'  type="submit" value="Update Cart">
+<input class ='fg-button teal'  type="submit" value="Update Qty">
 <?php echo form_close(); ?>
 
 <!-- "Place order button" on click send "billing" controller -->

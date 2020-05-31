@@ -9,6 +9,9 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/CSS/style.css">
 
 </head>
+
+<?php include('header.php')?>
+
 <body>
 
 <div id='content'>
