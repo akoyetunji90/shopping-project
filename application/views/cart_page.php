@@ -11,8 +11,10 @@
 <!-- Font Awesome CDN-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.css" integrity="sha256-2SjB4U+w1reKQrhbbJOiQFARkAXA5CGoyk559PJeG58=" crossorigin="anonymous" />
 
-
 </head>
+
+<?php include('header.php')
+?>
 
 <script type="text/javascript">
 // To conform clear all data in cart.
@@ -30,15 +32,16 @@ return false; // cancel button
 
 <div id="cart" >
 <div id = "heading">
-<h2 align="center">Products on Your Shopping Cart</h2>
+<h2 align="center">Products on Your Shopping Cart <i class= "fas fa-shopping-cart"></i>
+</h2>
 </div>
 
 <div>
  <table id="table" border="0" cellpadding="5px" cellspacing="1px">
 <?php
 // All values of cart store in "$cart".
-if ($cart = $this->cart->contents()): ?>
 
+if ($cart = $this->cart->contents()): ?>
 <tr id= "main_heading">
 <td>Product Image</td>
 <td>Serial</td>
@@ -93,7 +96,7 @@ echo form_hidden('cart[' . $item['id'] . '][qty]', $item['qty']);
 <td>
 <?php
 // cancle image.
-$path = "<img src='http://localhost/codeigniter_cart/images/cart_cross.jpg' width='25px' height='20px'>";
+$path = '<i class= "fas fa-shopping-cart"></i>';
 echo anchor('Shopping_Cart/remove_cart/' . $item['rowid'], $path);
 ?>
 </td>

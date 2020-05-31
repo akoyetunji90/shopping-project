@@ -62,7 +62,7 @@ $data = array(
 
 $this->cart->update($data);
 }
-redirect('Shopping_Cart');
+        $this->load->view('cart_page');
 }
 
     function billing_view(){

@@ -9,7 +9,6 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/CSS/style.css">
 
 </head>
-
 <body>
 
 <div id='content'>
@@ -54,7 +53,7 @@ echo "<div id='add_button'>";
 $btn = array(
 'class' => 'fg-button teal',
 'value' => 'Add to Cart',
-'name' => 'action'
+'name' => 'action',
 );
 
 // Submit Button.
